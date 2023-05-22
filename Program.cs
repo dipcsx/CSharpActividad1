@@ -33,6 +33,9 @@ do{
             break;
         case "7":
             ejecutarPrograma7();
+            break;
+        case "8":
+            ejecutarPrograma8();
             break;    
         default:
             break;
@@ -224,23 +227,39 @@ static void ejecutarPrograma7(){
         
         maqueta(7);        
         Console.Write("Ingresar primer numero: ");
-        num1 = Convert.ToInt32(Console.ReadLine());
+        //una forma de validar,es declarando como string, y luego condicional:
+        // si se puede convertir a numero,en caso no, mensaje de advertencia y sale del programa.
+        num1 = Convert.ToDouble(Console.ReadLine() ?? ""); 
         Console.Write("Ingresar segundo numero: ");
-        num2 = Convert.ToInt32(Console.ReadLine());
-        double producto=num1*num2;        
-        Console.WriteLine("***************************************");
-        Console.WriteLine($"[Suma] : {num1+num2}");
-        Console.WriteLine($"[Resta] : {num1-num2}");
-        Console.WriteLine($"[Multiplicación] : {num1*num2}");
-        Console.WriteLine($"[División] : {num1/num2}");
+        num2 = Convert.ToDouble(Console.ReadLine());
+        var(suma,resta,producto,division) = OperarBas(num1,num2);
         
-        if(num1*num2>=20) producto=producto-(num1-num2);
-        else producto=producto+(num1-num2);
-        Console.WriteLine($"El resultado de validar si es > o < a 20 es: {producto}");
+        Console.WriteLine("***************************************");
+        Console.WriteLine($"[Suma] : {suma}");
+        Console.WriteLine($"[Resta] : {resta}");
+        Console.WriteLine($"[Multiplicación] : {producto}");
+        if (num2==0) Console.WriteLine($"[División] : No se puede dividir entre 0.");
+        else Console.WriteLine($"[División] : {division}");
+        if(producto>=20) {
+            producto=producto-resta;
+            Console.WriteLine($"\nProducto es >= 20, se restará {resta} = {producto}");
+        }
+        else{
+            producto=producto+suma;
+            Console.WriteLine($"\nProducto es < 20, se sumara {suma} = {producto}");
+        } 
         Console.WriteLine("***************************************");
         opcion=volverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
+}
+static void ejecutarPrograma8(){
+    Console.WriteLine("What is your name?");
+    var name = Console.ReadLine();
+    var currentDate = DateTime.Now;
+    Console.WriteLine($"{Environment.NewLine}Hello, {name}, on {currentDate:d} at {currentDate:t}!");
+    Console.Write($"{Environment.NewLine}Press any key to exit...");
+    Console.ReadKey(true);
 }
 
 //Funcion para calcular el salario y las horas extras/Ejercicio 1
@@ -370,4 +389,13 @@ static string obtenerSigno(string dia, string mes){
     else if(numdia>=21 && nummes==1 || numdia<=18 && nummes==2) return "ACUARIO";
     else if(numdia>=19 && nummes==2 || numdia<=20 && nummes==3) return "PICIS";
     else return "NO SE ENCONTRO EL SIGNO";
+}
+//Funcion para obtener las operacion basicas de dos numeros.
+static (double,double,double,double) OperarBas(double num1, double num2){
+    double suma = num1+num2;
+    double resta = num1-num2;
+    double producto = num1*num2;
+    double division = num1/num2;
+    return (suma,resta,producto,division);
+
 }
