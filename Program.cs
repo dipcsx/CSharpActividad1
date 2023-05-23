@@ -254,14 +254,29 @@ static void ejecutarPrograma7(){
     Console.ReadLine();
 }
 static void ejecutarPrograma8(){
-    Console.WriteLine("What is your name?");
-    var name = Console.ReadLine();
-    var currentDate = DateTime.Now;
-    Console.WriteLine($"{Environment.NewLine}Hello, {name}, on {currentDate:d} at {currentDate:t}!");
-    Console.Write($"{Environment.NewLine}Press any key to exit...");
-    Console.ReadKey(true);
-}
+    string opcion;
+    int num;
+    do{
+        maqueta(8);        
+        Console.Write("Ingrese un numero del 1-10: ");
+        num=Convert.ToInt32(Console.ReadLine());
 
+        Console.WriteLine("***************************************");
+        GenerarTablaMulti(num);
+        Console.WriteLine("***************************************");
+        
+        opcion=volverAejecutar();
+    }while(opcion!="N" && opcion!="n");
+    Console.ReadLine();
+}
+//Metodo para generar tabla de multiplicacion
+static void GenerarTablaMulti(int num){
+    int producto;
+    for (int i=1;i<=10;i++){
+            producto=i*num;
+            Console.WriteLine($"{num} x {i} = {producto}");
+        }
+}
 //Funcion para calcular el salario y las horas extras/Ejercicio 1
 static (double,int) calcularDetalleSalario(double pagoh, int horast, int jorTrab){
     double salario; int hextras=0;
@@ -399,3 +414,4 @@ static (double,double,double,double) OperarBas(double num1, double num2){
     return (suma,resta,producto,division);
 
 }
+
