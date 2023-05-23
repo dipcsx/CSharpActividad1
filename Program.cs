@@ -14,29 +14,35 @@ do{
     
     switch(op){
         case "1":
-            ejecutarPrograma1();
+            EjecutarPrograma1();
             break;
         case "2":
-            ejecutarPrograma2();
+            EjecutarPrograma2();
             break;
         case "3":
-            ejecutarPrograma3();
+            EjecutarPrograma3();
             break;
         case "4":
-            ejecutarPrograma4();
+            EjecutarPrograma4();
             break;
         case "5":
-            ejecutarPrograma5();
+            EjecutarPrograma5();
             break;
         case "6":
-            ejecutarPrograma6();
+            EjecutarPrograma6();
             break;
         case "7":
-            ejecutarPrograma7();
+            EjecutarPrograma7();
             break;
         case "8":
-            ejecutarPrograma8();
-            break;    
+            EjecutarPrograma8();
+            break;
+        case "9":
+            EjecutarPrograma9();
+            break; 
+        case "10":
+            EjecutarPrograma10();
+            break;   
         default:
             break;
     }
@@ -44,7 +50,7 @@ do{
 }while(op != "11");
 Console.ReadLine();
 
-static void maqueta(int numEjercicio){
+static void Maqueta(int numEjercicio){
         Console.Clear();        
         Console.WriteLine($"\n«« EJERCICIO {numEjercicio} »»");        
         Console.BackgroundColor=ConsoleColor.Yellow;
@@ -53,13 +59,13 @@ static void maqueta(int numEjercicio){
         Console.ForegroundColor=ConsoleColor.Gray;
         Console.BackgroundColor=ConsoleColor.Black;
 }
-static void ejecutarPrograma1(){
+static void EjecutarPrograma1(){
     //Ejercicio 1
     const int jorTrab=48; //variable constante jornada laboral
     string opcion;
     //Bucle Peticion de Datos y resultados.
     do{
-        maqueta(1); //Maqueta de presentacion
+        Maqueta(1); //Maqueta de presentacion
         //programa principal
         //Peticion de datos
         Console.ForegroundColor = ConsoleColor.Green;
@@ -72,7 +78,7 @@ static void ejecutarPrograma1(){
 
         //Invocamos la funcion que devolvera el salario y las horas extras.
         //Y las almacenamos en dos variables
-        var (salario,hextras) = calcularDetalleSalario(pagoh,horast,jorTrab);
+        var (salario,hextras) = CalcularDetalleSalario(pagoh,horast,jorTrab);
 
         //Resultado mostrado en consola
         Console.WriteLine($"** Horas Extras laboradas es: {hextras} **");
@@ -81,21 +87,21 @@ static void ejecutarPrograma1(){
         Console.WriteLine("****************************************");
         
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma2(){
+static void EjecutarPrograma2(){
     //Ejercicio 2
     string opcion;
     do{
-        maqueta(2); //Maqueta de presentacion
+        Maqueta(2); //Maqueta de presentacion
         //programa principal
         Console.Write("Nombre de Cliente: ");
         Console.ReadLine();
         Console.Write("# articulos comprados: ");
         int cantidadArt = Convert.ToInt32(Console.ReadLine());
-        string formaPago = evaluarFormaDePago(cantidadArt);
+        string formaPago = EvaluarFormaDePago(cantidadArt);
         Console.WriteLine("*********************");
         Console.Write("La forma de pago será en ");
         Console.BackgroundColor = ConsoleColor.Gray;
@@ -106,11 +112,11 @@ static void ejecutarPrograma2(){
         Console.WriteLine("*********************");
         
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma3(){
+static void EjecutarPrograma3(){
     //Ejercicio 3
     const int criterioDscto = 80;
     const double oferDscto = 10;
@@ -119,25 +125,25 @@ static void ejecutarPrograma3(){
     int cantCuadernos;
     string opcion;
     do{
-        maqueta(3); //Maqueta de presentacion
+        Maqueta(3); //Maqueta de presentacion
         //programa principal
         Console.Write("Ingrese # de cuadernos: ");
         cantCuadernos = Convert.ToInt32(Console.ReadLine());
-        var (pagoF, dscto) = calcularPagoFinal(cantCuadernos, criterioDscto, oferDscto, costoUnidad);
+        var (pagoF, dscto) = CalcularPagoFinal(cantCuadernos, criterioDscto, oferDscto, costoUnidad);
         if(dscto==0) Console.WriteLine("* No tiene Dscto.");
         else Console.WriteLine($"* Felicidades obtiene un Dscto. de: {dscto}");
         Console.WriteLine("*********************");
         Console.WriteLine($"El pago total es: S/ {pagoF}");
         Console.WriteLine("*********************");
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma4(){
+static void EjecutarPrograma4(){
     string opcion;
     do{
-        maqueta(4); //Maqueta de presentacion
+        Maqueta(4); //Maqueta de presentacion
         //programa principal
         Console.Write("Cantidad de numero a ingresar:");
         int cant = Convert.ToInt32(Console.ReadLine());
@@ -151,16 +157,16 @@ static void ejecutarPrograma4(){
         }
         Console.WriteLine("*********************");
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma5(){
+static void EjecutarPrograma5(){
     string opcion, nombre, fechaNac;
     string dia="", mes="", anio="";
     bool esValido; 
     do{
-        maqueta(5);
+        Maqueta(5);
         Console.Write("Ingrese su Nombre: ");
         nombre = Console.ReadLine() ?? "";
         Console.Write("Ingrese su fecha de Nac.[dd/mm/aaaa]: ");
@@ -169,30 +175,30 @@ static void ejecutarPrograma5(){
             dia = fechaNac.Substring(0,2);
             mes = fechaNac.Substring(3,2);
             anio = fechaNac.Substring(6,4); 
-            esValido=validarFecha(dia,mes,anio);
+            esValido=ValidarFecha(dia,mes,anio);
         
         }else esValido=false;
 
         Console.WriteLine("***************************************");
         if(esValido){
-            string signo = obtenerSigno(dia,mes);
+            string signo = ObtenerSigno(dia,mes);
             Console.WriteLine($"{nombre} tu Signo Zodiacal es: {signo}");
             
         }else Console.WriteLine("!!! Ingrese formato de fecha correcta.");
                 
         Console.WriteLine("***************************************");
         
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma6(){
+static void EjecutarPrograma6(){
     string nombre, opcion;
     double promedio;
     int nota;
     do{
         double suma=0;
-        maqueta(6);        
+        Maqueta(6);        
         Console.Write("Ingrese Nombre de Alumno: ");
         nombre = Console.ReadLine() ?? "";
         Console.WriteLine("Ingrese 4 notas:");
@@ -215,17 +221,17 @@ static void ejecutarPrograma6(){
             Console.ForegroundColor=ConsoleColor.Gray;
         }   
         Console.WriteLine("***************************************");
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 
 }
-static void ejecutarPrograma7(){
+static void EjecutarPrograma7(){
     double num1,num2;
     string opcion;
     do{
         
-        maqueta(7);        
+        Maqueta(7);        
         Console.Write("Ingresar primer numero: ");
         //una forma de validar,es declarando como string, y luego condicional:
         // si se puede convertir a numero,en caso no, mensaje de advertencia y sale del programa.
@@ -249,23 +255,62 @@ static void ejecutarPrograma7(){
             Console.WriteLine($"\nProducto es < 20, se sumara {suma} = {producto}");
         } 
         Console.WriteLine("***************************************");
-        opcion=volverAejecutar();
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
-static void ejecutarPrograma8(){
+static void EjecutarPrograma8(){
     string opcion;
     int num;
     do{
-        maqueta(8);        
+        Maqueta(8);        
         Console.Write("Ingrese un numero del 1-10: ");
         num=Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine("***************************************");
         GenerarTablaMulti(num);
         Console.WriteLine("***************************************");
+
+        opcion=VolverAejecutar();
+    }while(opcion!="N" && opcion!="n");
+    Console.ReadLine();
+}
+static void EjecutarPrograma9(){
+    int num1,num2;
+    string opcion;
+    do{
+        Maqueta(9); //Maqueta de presentacion
+        //peticionde datos y validacion try
+        try{
+        Console.Write("Ingrese primer numero: ");
+        num1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Ingrese segundo numero: ");
+        num2 = Convert.ToInt32(Console.ReadLine());
+        ImprNumMediosValPar(num1,num2);              
+        Console.WriteLine("*********************");
+        }
+        catch(System.FormatException ex)
+        {
+            Console.WriteLine("Debe ingresar numeros enteros naturales." + ex.Message);
+        }
+        Console.WriteLine("*********************");
+        //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
+        opcion=VolverAejecutar();
+    }while(opcion!="N" && opcion!="n");
+    Console.ReadLine();
+}
+static void EjecutarPrograma10(){
+    string opcion;
+    do{
+        Maqueta(10); //Maqueta de presentacion
+        //programa principal
         
-        opcion=volverAejecutar();
+        Console.WriteLine("*********************");
+        
+        Console.WriteLine("*********************");
+        
+        //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
+        opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
@@ -277,8 +322,29 @@ static void GenerarTablaMulti(int num){
             Console.WriteLine($"{num} x {i} = {producto}");
         }
 }
+//Metodo para imprimir numeros entre N1 Y N2 y calcular ctos pares hay.
+static void ImprNumMediosValPar(int num1,int num2){
+    int menor, mayor, contar=0,contpar=0;
+    menor=num1;
+    mayor=num2;
+    if(num1>num2) {
+        mayor=num1;
+        menor=num2;
+    }
+    Console.WriteLine($"Los numeros entre {menor} y {mayor} son:");
+    Console.Write("[");
+    for(int i=menor+1;i<mayor;i++){
+        Console.Write($"{i}");
+        if(i<mayor-1) Console.Write(",");
+        contar=contar+1;
+        if(i%2==0) contpar=contpar+1; 
+    }
+    Console.WriteLine("]");
+    Console.WriteLine($"\nExisten {contar} numeros entre {menor} y {mayor}.");
+    Console.WriteLine($"De los cuales {contpar} son pares.");
+}
 //Funcion para calcular el salario y las horas extras/Ejercicio 1
-static (double,int) calcularDetalleSalario(double pagoh, int horast, int jorTrab){
+static (double,int) CalcularDetalleSalario(double pagoh, int horast, int jorTrab){
     double salario; int hextras=0;
     if (horast <= jorTrab){
         salario = pagoh * horast;
@@ -290,7 +356,7 @@ static (double,int) calcularDetalleSalario(double pagoh, int horast, int jorTrab
     return (salario, hextras);
 }
 //Funcion para evaluar la forma de pago segun le cantidad de articulos/Ejercicio 2
-static string evaluarFormaDePago(int cantidadArt){
+static string EvaluarFormaDePago(int cantidadArt){
     string formaPago;
     if(cantidadArt<=30) formaPago = "EFECTIVO";
     else if(cantidadArt>30 && cantidadArt<=60) formaPago = "TARJETA";
@@ -298,7 +364,7 @@ static string evaluarFormaDePago(int cantidadArt){
     return formaPago;
 }
 //Funcion para calular el pago final y el dscto por promocion./Ejercicio 3
-static (double, double) calcularPagoFinal(int cantCuadernos, int criterioDscto, double oferDscto, double costoUnidad){
+static (double, double) CalcularPagoFinal(int cantCuadernos, int criterioDscto, double oferDscto, double costoUnidad){
     double pagoF; double dscto;    
     if(cantCuadernos/12 < criterioDscto){
         dscto = 0;
@@ -329,7 +395,7 @@ static (int, int) MaxMin(int cantidadNumeros){
 return (mayor,menor);
 }
 //Funcion para solicitar sI desea volver a ejecutar el ejercicio actual /Todos los Ejercicios
-static string volverAejecutar(){
+static string VolverAejecutar(){
     string opcion;
     Console.Write("Desea realizar otro calculo.(Y/N): ");
     opcion = Console.ReadLine() ?? "";
@@ -343,7 +409,7 @@ static string volverAejecutar(){
     return opcion;
 }
 //Funcion decir si es Bisiesto
-static bool esBisiesto(int numanio){
+static bool EsBisiesto(int numanio){
     bool esBiciesto=true;
     if(numanio%4!=0) esBiciesto=false;
     else{
@@ -354,7 +420,7 @@ static bool esBisiesto(int numanio){
     return esBiciesto;
 }
 //Funcion para validez del rango de fecha
-static bool validarFecha(string dia, string mes, string anio){
+static bool ValidarFecha(string dia, string mes, string anio){
     bool fechaValida;
     int numdia, nummes, numanio;
     if(int.TryParse(dia, out numdia) && int.TryParse(mes,out nummes) && int.TryParse(anio,out numanio)){
@@ -368,7 +434,7 @@ static bool validarFecha(string dia, string mes, string anio){
                 if(numdia>0 && numdia<=30) fechaValida=true;
                 else fechaValida=false;
             }else{
-                if(esBisiesto(numanio)){
+                if(EsBisiesto(numanio)){
                     if(numdia>0 && numdia<=29) fechaValida=true;
                     else fechaValida=false;
                 } 
@@ -385,7 +451,7 @@ static bool validarFecha(string dia, string mes, string anio){
     return fechaValida;
 }
 //Funcion para obtener el signo
-static string obtenerSigno(string dia, string mes){
+static string ObtenerSigno(string dia, string mes){
     int numdia, nummes;
     //string signo="";
     int.TryParse(dia, out numdia);
