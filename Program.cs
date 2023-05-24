@@ -148,7 +148,7 @@ static void EjecutarPrograma4(){
         Console.Write("Cantidad de numero a ingresar:");
         int cant = Convert.ToInt32(Console.ReadLine());
         //Lamamos la funcion que arrojara el maximo y minimo de N numeros.
-        var (max, min) = MaxMin(cant);
+        var (max, min, medio) = MaxMin(cant);
         Console.WriteLine("*********************");                
         if(max==min) Console.WriteLine("* Debe ingresar al menos dos numeros diferentes *");
         else{
@@ -302,12 +302,32 @@ static void EjecutarPrograma9(){
 static void EjecutarPrograma10(){
     string opcion;
     do{
+        Console.Clear();
         Maqueta(10); //Maqueta de presentacion
         //programa principal
         
-        Console.WriteLine("*********************");
+        Console.WriteLine("*Ingreso de medidas de un Triángulo*");
+        //tengo una funcion que ordena numeros y devulve el mayor y menor, del un ejercicio anterior, lo aprovechare.
+        //intentare realizar sobrecarga de funciones
+        var(mayor,menor,medio) = MaxMin(3); //en caso el parametro sea mayor a 3 la funcion devolvera como valor de medio=0
+        //creacion una funcion que me validara si es un triangulo.True O False
+        if(EsTriangulo(mayor,menor,medio)){
+            string tipotriangulo=ObtenerTipoTriangulo(mayor,menor,medio);
+            Console.WriteLine("*********************");
+            Console.Write("El triangulo formado es:");
+            Console.BackgroundColor=ConsoleColor.Green;
+            Console.ForegroundColor=ConsoleColor.Black;
+            Console.WriteLine($"{tipotriangulo}");
+            Console.ForegroundColor=ConsoleColor.Gray;
+            Console.BackgroundColor=ConsoleColor.Black;
+            Console.WriteLine("*********************");
+        }else{
+            Console.WriteLine("No se puede formar un triángulo con los datos ingresados.");
+            Console.WriteLine("*Recuerde que para que se pueda formar un triángulo se debe cumplir \"a-b < c < a+b\"");
+            Console.WriteLine("*********************");
+        }
         
-        Console.WriteLine("*********************");
+        
         
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
         opcion=VolverAejecutar();
@@ -375,9 +395,9 @@ static (double, double) CalcularPagoFinal(int cantCuadernos, int criterioDscto, 
     }    
 return (pagoF, dscto);
 }
-//Funcion para hallar el maximo y minimo de n cantidad de # ingresados/Ejercicio 4
-static (int, int) MaxMin(int cantidadNumeros){
-    int num; int mayor=0; int menor=0;
+//Funcion para hallar el maximo y minimo y medio de n cantidad de # ingresados/Ejercicio 4 y 10
+static (int, int, int) MaxMin(int cantidadNumeros){
+    int num; int mayor=0; int menor=0; int medio = 0;
     Console.WriteLine($"Ingrese {cantidadNumeros} numeros: ");
     for(int i=1;i<=cantidadNumeros;i++) {
         Console.Write($"[{i}] : ");
@@ -385,14 +405,19 @@ static (int, int) MaxMin(int cantidadNumeros){
         if(i==1){
             mayor=num;
             menor=num;
+            medio=num;
         }
         else
         {
-            if (num>mayor) mayor=num;
-            if (num<menor) menor=num;    
-        }            
+            //FUNCIONO YEEEEEE....PRUEBA DE ESCRITORIO REALIZADA
+            if (num>mayor) {medio=mayor; mayor=num;}
+            if (num<menor) {medio=menor; menor=num;}
+            if (num>menor && num<mayor) {medio=num;}
+        }
+                         
     }
-return (mayor,menor);
+if(cantidadNumeros==3) return (mayor,menor,medio);
+else return (mayor,menor,0);
 }
 //Funcion para solicitar sI desea volver a ejecutar el ejercicio actual /Todos los Ejercicios
 static string VolverAejecutar(){
@@ -480,4 +505,15 @@ static (double,double,double,double) OperarBas(double num1, double num2){
     return (suma,resta,producto,division);
 
 }
-
+static bool EsTriangulo(int mayor,int menor,int medio){
+    if(medio-menor<mayor && medio+menor>mayor) return true;
+    else return false;
+}
+static string ObtenerTipoTriangulo(int mayor, int menor, int medio){
+    //isosceles si tiene dos de sus lados iguales
+    //equilatero si tiene los 3 lados iguales
+    //escaleno si tiene los 3 lados diferentes
+    if(mayor==menor && menor==medio) return "EQUILATERO";
+    else if(mayor!=menor && menor!=medio && mayor!=medio) return "ESCALENO";
+    else return "ISOSCELES";
+}
