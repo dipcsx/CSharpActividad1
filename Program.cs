@@ -397,26 +397,52 @@ return (pagoF, dscto);
 }
 //Funcion para hallar el maximo y minimo y medio de n cantidad de # ingresados/Ejercicio 4 y 10
 static (int, int, int) MaxMin(int cantidadNumeros){
-    int num; int mayor=0; int menor=0; int medio = 0;
+    int num; int a=0; int b=0; int c = 0;
     Console.WriteLine($"Ingrese {cantidadNumeros} numeros: ");
     for(int i=1;i<=cantidadNumeros;i++) {
         Console.Write($"[{i}] : ");
         num = Convert.ToInt32(Console.ReadLine());
-        if(i==1){
-            mayor=num;
-            menor=num;
-            medio=num;
-        }
-        else
-        {
-            //FUNCIONO YEEEEEE....PRUEBA DE ESCRITORIO REALIZADA
-            if (num>mayor) {medio=mayor; mayor=num;}
-            if (num<menor) {medio=menor; menor=num;}
-            if (num>menor && num<mayor) {medio=num;}
-        }
-                         
+        if (cantidadNumeros==3){
+            if(i==1) a=num;
+            else if(i==2) b=num;
+            else c=num;
+        }                    
     }
-if(cantidadNumeros==3) return (mayor,menor,medio);
+
+if(cantidadNumeros==3){
+    int menor=a, medio=b, mayor=c;
+    if(a>=b && a>=c){
+        mayor=a;
+        if(b>c){
+            medio=b;
+            menor=c;
+        }else{
+            medio=c;
+            menor=b;
+        }
+    } 
+    if(b>a && b>c){
+        mayor=b;
+        if(a>c){
+            medio=a;
+            menor=c;
+        }else{
+            medio=c;
+            menor=a;
+        }
+    }
+    if(c>=a && c>=b){
+        mayor=c;
+        if(a>b){
+            medio=a;
+            menor=b;
+        }else{
+            medio=b;
+            menor=a;
+        }
+    }
+return (mayor,menor,medio);
+} 
 else return (mayor,menor,0);
 }
 //Funcion para solicitar sI desea volver a ejecutar el ejercicio actual /Todos los Ejercicios
