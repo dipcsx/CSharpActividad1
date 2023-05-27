@@ -398,19 +398,33 @@ return (pagoF, dscto);
 //Funcion para hallar el maximo y minimo y medio de n cantidad de # ingresados/Ejercicio 4 y 10
 static (int, int, int) MaxMin(int cantidadNumeros){
     int num; int a=0; int b=0; int c = 0;
+    int menor=0, mayor=0, medio;
     Console.WriteLine($"Ingrese {cantidadNumeros} numeros: ");
+    //Solicitar y asignar numeros
     for(int i=1;i<=cantidadNumeros;i++) {
         Console.Write($"[{i}] : ");
         num = Convert.ToInt32(Console.ReadLine());
+        //solo si la cantidad de numeros ingresados es 3
         if (cantidadNumeros==3){
             if(i==1) a=num;
             else if(i==2) b=num;
             else c=num;
-        }                    
+        }else{
+            if(i==1){
+            mayor=num;
+            menor=num;
+            }
+            else
+            {
+                if (num>mayor) mayor=num;
+                if (num<menor) menor=num;    
+            }
+        }
+
     }
 
 if(cantidadNumeros==3){
-    int menor=a, medio=b, mayor=c;
+    menor=a; medio=b; mayor=c;
     if(a>=b && a>=c){
         mayor=a;
         if(b>c){
