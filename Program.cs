@@ -1,15 +1,13 @@
 ﻿string op;
 do{
     Console.Clear();
-    Console.BackgroundColor = ConsoleColor.Green;
-    Console.ForegroundColor = ConsoleColor.Black;
-    Console.WriteLine("\n«MENU - ACTIVIDAD NRO 1»");
-    Console.ForegroundColor = ConsoleColor.Gray;
-    Console.BackgroundColor = ConsoleColor.Black;
+    Colores("Black","Green");
+    Console.WriteLine("«MENU - ACTIVIDAD NRO 1»\n");
+    Console.ResetColor();
     
     for(int i=1;i<=10;i++) Console.WriteLine($"[{i}] Ejercicio {i}");
     Console.WriteLine("[11] Salir \n");
-    Console.Write("Presione [numero] correspondiente, para ejecutar el ejercicio: ");
+    Console.Write("Presione [Num] correspondiente, para ejecutar el ejercicio: ");
     op = Console.ReadLine() ?? "";
     
     switch(op){
@@ -42,35 +40,31 @@ do{
             break; 
         case "10":
             EjecutarPrograma10();
-            break;   
+            break;
         default:
             break;
     }
-    
 }while(op != "11");
 Console.ReadLine();
 
 static void Maqueta(int numEjercicio){
-        Console.Clear();        
-        Console.WriteLine($"\n«« EJERCICIO {numEjercicio} »»");        
-        Console.BackgroundColor=ConsoleColor.Yellow;
-        Console.ForegroundColor=ConsoleColor.Black;
-        Console.WriteLine("*Ingreso de datos*");
-        Console.ForegroundColor=ConsoleColor.Gray;
-        Console.BackgroundColor=ConsoleColor.Black;
+        Console.Clear(); 
+        Colores("Black","Yellow");       
+        Console.WriteLine($"«« EJERCICIO {numEjercicio} »»");        
+        Colores("Black","Gray");
+        Console.WriteLine("\n*Ingreso de datos*");
+        Console.ResetColor();
 }
 static void EjecutarPrograma1(){
-    //Ejercicio 1
     const int jorTrab=48; //variable constante jornada laboral
     string opcion;
     //Bucle Peticion de Datos y resultados.
     do{
         Maqueta(1); //Maqueta de presentacion
-        //programa principal
         //Peticion de datos
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"\n«« La jornada de trabajo laboral ACTUAL es: {jorTrab} horas »»");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Colores("Green","Black");
+        Console.WriteLine($"(La jornada de trabajo laboral ACTUAL es: {jorTrab} horas)");
+        Console.ResetColor();
         Console.Write("Ingresa pago x hora laboral:S/ "); //Solicitud de Pago por hora
         double pagoh=Convert.ToDouble(Console.ReadLine());
         Console.Write("Ingrese horas/semana trabajadas: "); //Solicitud de horas trabajadas semanales
@@ -81,9 +75,9 @@ static void EjecutarPrograma1(){
         var (salario,hextras) = CalcularDetalleSalario(pagoh,horast,jorTrab);
 
         //Resultado mostrado en consola
-        Console.WriteLine($"** Horas Extras laboradas es: {hextras} **");
         Console.WriteLine("****************************************");
-        Console.WriteLine($"El salario para el trabajador es: S/ {salario}");
+        Console.WriteLine($"* Horas Extras laboradas es: {hextras}");
+        Console.WriteLine($"* El salario para el trabajador es: S/ {salario}");
         Console.WriteLine("****************************************");
         
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
@@ -104,11 +98,9 @@ static void EjecutarPrograma2(){
         string formaPago = EvaluarFormaDePago(cantidadArt);
         Console.WriteLine("*********************");
         Console.Write("La forma de pago será en ");
-        Console.BackgroundColor = ConsoleColor.Gray;
-        Console.ForegroundColor = ConsoleColor.Black;
+        Colores("Black","Gray");
         Console.WriteLine($"*{formaPago}*");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ResetColor();
         Console.WriteLine("*********************");
         
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
@@ -117,7 +109,6 @@ static void EjecutarPrograma2(){
     Console.ReadLine();
 }
 static void EjecutarPrograma3(){
-    //Ejercicio 3
     const int criterioDscto = 80;
     const double oferDscto = 10;
     const int costoDocena = 48;
@@ -182,12 +173,10 @@ static void EjecutarPrograma5(){
         Console.WriteLine("***************************************");
         if(esValido){
             string signo = ObtenerSigno(dia,mes);
-            Console.WriteLine($"{nombre} tu Signo Zodiacal es: {signo}");
-            
+            Console.WriteLine($"{nombre} tu Signo Zodiacal es: {signo}"); 
         }else Console.WriteLine("!!! Ingrese formato de fecha correcta.");
-                
         Console.WriteLine("***************************************");
-        
+    
         opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
@@ -211,14 +200,14 @@ static void EjecutarPrograma6(){
         Console.WriteLine("***************************************");
         Console.Write($"El alumno \"{nombre}\", se encuentra ");
         if(promedio>10) {
-            Console.ForegroundColor=ConsoleColor.Green;
+            Colores("Black","Green");
             Console.WriteLine("APROBADO.");
-            Console.ForegroundColor=ConsoleColor.Gray;
+            Console.ResetColor();
         }
         else {
-            Console.ForegroundColor=ConsoleColor.Red;
+            Colores("Black","Red");
             Console.WriteLine("DESAPROBADO.");
-            Console.ForegroundColor=ConsoleColor.Gray;
+            Console.ResetColor();
         }   
         Console.WriteLine("***************************************");
         opcion=VolverAejecutar();
@@ -314,12 +303,10 @@ static void EjecutarPrograma10(){
         if(EsTriangulo(mayor,menor,medio)){
             string tipotriangulo=ObtenerTipoTriangulo(mayor,menor,medio);
             Console.WriteLine("*********************");
-            Console.Write("El triangulo formado es:");
-            Console.BackgroundColor=ConsoleColor.Green;
-            Console.ForegroundColor=ConsoleColor.Black;
+            Console.Write("El triángulo formado es:");
+            Colores("Black","Green");
             Console.WriteLine($"{tipotriangulo}");
-            Console.ForegroundColor=ConsoleColor.Gray;
-            Console.BackgroundColor=ConsoleColor.Black;
+            Console.ResetColor();
             Console.WriteLine("*********************");
         }else{
             Console.WriteLine("No se puede formar un triángulo con los datos ingresados.");
@@ -327,13 +314,12 @@ static void EjecutarPrograma10(){
             Console.WriteLine("*********************");
         }
         
-        
-        
         //Funcion que se encarga de preguntar si desea volver a ejecutar el programa actual y validar la opcion.
         opcion=VolverAejecutar();
     }while(opcion!="N" && opcion!="n");
     Console.ReadLine();
 }
+
 //Metodo para generar tabla de multiplicacion
 static void GenerarTablaMulti(int num){
     int producto;
@@ -545,10 +531,12 @@ static (double,double,double,double) OperarBas(double num1, double num2){
     return (suma,resta,producto,division);
 
 }
+//Funcion que valida si con los datos ingresados se puede formar un triangulo.
 static bool EsTriangulo(int mayor,int menor,int medio){
     if(medio-menor<mayor && medio+menor>mayor) return true;
     else return false;
 }
+//Funcion que devuelve el tipo de triangulo formado, una vez se haya validado la funcion EsTriangulo
 static string ObtenerTipoTriangulo(int mayor, int menor, int medio){
     //isosceles si tiene dos de sus lados iguales
     //equilatero si tiene los 3 lados iguales
@@ -556,4 +544,13 @@ static string ObtenerTipoTriangulo(int mayor, int menor, int medio){
     if(mayor==menor && menor==medio) return "EQUILATERO";
     else if(mayor!=menor && menor!=medio && mayor!=medio) return "ESCALENO";
     else return "ISOSCELES";
+}
+//Funcion para aplicar colores de letra y fondo.
+static void Colores(string letras, string fondo){
+    ConsoleColor colorletras, colorfondo;
+    if(Enum.TryParse(letras, out colorletras) && Enum.TryParse(fondo, out colorfondo)){
+        Console.ForegroundColor = colorletras;
+        Console.BackgroundColor = colorfondo;
+    }else Console.WriteLine("No se pudo aplicar los colores de Maqueta.");
+    
 }
